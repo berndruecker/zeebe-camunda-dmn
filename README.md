@@ -1,9 +1,9 @@
-# zb-dmn-extension
-Zeebe task worker for DMN. It uses the Camunda DMN engine to evaluate decisions. The decisions are read from local directory.
+# Simple Worker that can process DMN as part of Zeebe Workflows
+Zeebe task worker for DMN. It uses the Camunda DMN to evaluate decisions. The decisions are read from local directory.
 
 * register for tasks of type 'DMN'
 * required task header 'decisionRef' => id of the decision to evaluate
-* completes task with payload 'result' which contains the complete decision result
+* completes task with payload 'dmn-result' which contains the complete decision result
 
 ```xml
 <bpmn:serviceTask id="decisionTask" name="Eval DMN decision">
@@ -37,10 +37,8 @@ You can provide a properties file `application.properties` to configure the Zeeb
 
 ```
 # DMN task worker
-zeebe.dmn.repo=dmn-repo                             # default: repo
-zeebe.dmn.topic=default-topic                       # => default
+dmn.models.dir=my-dmn-models                        # default: models
 # Zeebe Client
-zeebe.client.broker.contactPoint=127.0.0.1:51015    # => default
 ```
 
 ## Code of Conduct
