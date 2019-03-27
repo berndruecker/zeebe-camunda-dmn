@@ -1,4 +1,4 @@
-package io.berndruecker.demo.zeebe.dmn;
+package io.berndruecker.demo.zeebe.dmn.stateless;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -12,35 +12,39 @@ import org.camunda.bpm.model.dmn.Dmn;
 import org.camunda.bpm.model.dmn.DmnModelInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
 
-public class DmnRepository {
-  private static final Logger LOG = LoggerFactory.getLogger(DmnRepository.class);
+@Component
+public class DirectoryBackedDmnRepository {
+  
+  private static final Logger LOG = LoggerFactory.getLogger(DirectoryBackedDmnRepository.class);
 
-  private final String directory;
-  private final DmnEngine dmnEngine;
+  @Value("${dmn.files.dir:#{null}}")
+  private String dmnFilesDirectory;
+
+  @Autowired
+  private DmnEngine dmnEngine;
 
   private final Map<String, DmnDecision> decisionsById = new HashMap<>();
 
-  public DmnRepository(String directory, DmnEngine dmnEngine) {
-    this.directory = directory;
-    this.dmnEngine = dmnEngine;
-
-    scanDirectory();
-  }
-
   public DmnDecision findDecisionById(String decisionId) {
     if (!decisionsById.containsKey(decisionId)) {
-      scanDirectory();
+      scanDirectory(dmnFilesDirectory);
     }
 
     return decisionsById.get(decisionId);
   }
 
-  private void scanDirectory() {
+  private void scanDirectory(String directory) {
     LOG.debug("Scan directory: {}", directory);
 
     try {
-      Files.walk(Paths.get(directory)).filter(isDmnFile()).forEach(this::readDmnFile);
+      Path path = Paths.get(directory);
+      LOG.info("Scan path: {}", path.toAbsolutePath());
+      Files.walk(path).filter(isDmnFile()).forEach(this::readDmnFile);
     } catch (IOException e) {
       LOG.warn("Fail to scan directory: {}", directory, e);
     }
@@ -48,6 +52,8 @@ public class DmnRepository {
 
   private void readDmnFile(Path dmnFile) {
     final String fileName = dmnFile.getFileName().toString();
+
+    LOG.info("Reading DMN file: {}", dmnFile);
 
     try {
       final DmnModelInstance dmnModel = Dmn.readModelFromFile(dmnFile.toFile());

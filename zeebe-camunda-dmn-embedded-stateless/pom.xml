@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<name>Zeebe DMN extension</name>
+	<groupId>io.berndruecker.demo.zeebe</groupId>
+	<artifactId>zeebe-camunda-dmn-embedded-stateless</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		
+		<version.zeebe>0.16.4</version.zeebe>
+		<version.dmn>7.10.0</version.dmn>
+		<version.spring>2.1.3.RELEASE</version.spring>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>io.zeebe</groupId>
+			<artifactId>zeebe-client-java</artifactId>
+			<version>${version.zeebe}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.camunda.bpm.dmn</groupId>
+			<artifactId>camunda-engine-dmn</artifactId>
+			<version>${version.dmn}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>${version.spring}</version>
+		</dependency>
+
+	</dependencies>
+</project>
