@@ -15,16 +15,6 @@ public class CaptureHistoryDmnHistoryEventProducer extends DefaultDmnHistoryEven
     return historicDecisionInstanceEntity;
 
   }
-//  public HistoryEvent createDecisionEvaluatedEvt(final DmnDecisionEvaluationEvent evaluationEvent) {
-//    return createHistoryEvent(evaluationEvent, new HistoricDecisionInstanceSupplier() {
-//
-//      public HistoricDecisionInstanceEntity createHistoricDecisionInstance(DmnDecisionLogicEvaluationEvent evaluationEvent, HistoricDecisionInstanceEntity rootDecisionInstance) {
-//         HistoricDecisionInstanceEntity historicDecisionInstanceEntity = createDecisionEvaluatedEvt(evaluationEvent, rootDecisionInstance);
-//         latestHistoricDecisionInstance.set(historicDecisionInstanceEntity);         
-//         return historicDecisionInstanceEntity;
-//      }
-//    });
-//  }
   
   public static String getLatestHistoricDecisionInstanceId() {
     return latestHistoricDecisionInstance.get().getId();
