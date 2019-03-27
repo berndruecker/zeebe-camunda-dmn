@@ -1,4 +1,4 @@
-package io.berndruecker.demo.zeebe.firstcontact;
+package io.berndruecker.demo.zeebe.dmn;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class DeployAndRunOneInstance {
     
     System.out.println("Deployed " + deploymentEvent);
     
-    JobWorker worker = zeebe.newWorker() //
+    zeebe.newWorker() //
         .jobType("sysout") //
         .handler(new JobHandler() {
           
