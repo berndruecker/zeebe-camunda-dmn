@@ -51,6 +51,6 @@ Note that this trick will not work if you leverage the Camunda Platform via REST
 
 The very easy approach is to add a column to your decision table. In this showcase we add `workflowInstanceKey` as well as `workflowJobKey` as variables you could add without using them in the decision logic. This will capture the data in the history:
 
-![](./cockpit-dmn.png)
+![](../../../cockpit-dmn.png)
 
 The downside is of course that this is visible in your DMN decision table. But it does work out of the box.
