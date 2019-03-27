@@ -27,11 +27,11 @@ The BPMN workflow for Zeebe adds a couple of custom headers to configure DMN eva
 
 Now there are three basic architecture alternatives:
 
-1. **Stateless DMN engine**: Camunda supports to run DMN evaluations in a stateless manner. Therefor you simply leverage the DMN engine as Java jar file. This is showcased in [zeebe-camunda-dmn-embedded-stateless](zeebe-camunda-dmn-embedded-stateless).
+1. **[Stateless DMN engine](zeebe-camunda-dmn-embedded-stateless)**: Camunda supports to run DMN evaluations in a stateless manner. Therefor you simply leverage the DMN engine as Java jar file. This is showcased in [zeebe-camunda-dmn-embedded-stateless](zeebe-camunda-dmn-embedded-stateless). Use if you don't need versioning of your DMN models or history. This is by far the most simple and most performant approach.
 
-2. **Decision Service in embedded Camunda BPM Platform**: Run a full Camunda BPM platform embeded in the Java application also running the Zeebe Worker (e.g. in Spring Boot). This allows to version DMN models and keep a history of decision evaluations. It is showcases in [zeebe-camunda-dmn-embedded-platform](zeebe-camunda-dmn-embedded-platform).
+2. **[Decision Service in embedded Camunda BPM Platform](zeebe-camunda-dmn-embedded-platform)**: Run a full Camunda BPM platform embeded in the Java application also running the Zeebe Worker (e.g. in Spring Boot). This allows to version DMN models and keep a history of decision evaluations. It is showcases in [zeebe-camunda-dmn-embedded-platform](zeebe-camunda-dmn-embedded-platform). Use if you want to have versioning and history and you develop in Java and Spring Boot.
 
-3. **Decision Service via REST API**: This allows for the same features, but separates the Zeebe Worker from the Camunda platform. This allows to [run Camunda as a service](https://github.com/berndruecker/camunda-on-pcf/tree/master/engine-as-a-service) independant of the usage from Zeebe.
+3. **Decision Service via REST API**: This allows for the same features, but separates the Zeebe Worker from the Camunda platform. This allows to [run Camunda as a service](https://github.com/berndruecker/camunda-on-pcf/tree/master/engine-as-a-service) independant of the usage from Zeebe. Use if you want to have versioning and history, but don't want to dive much into Java and Spring Boot. This worker is pretty generic and reusable. **TODO**
 
 ## How to use
 
