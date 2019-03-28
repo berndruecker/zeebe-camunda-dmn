@@ -2,7 +2,14 @@
 
 ![](./overview.png)
 
-## Connect Camunda DMN via Zeebe Workers
+# Screencast
+
+This video walks you through this example:
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=Q3tLKV-6J3c" target="_blank"><img src="http://img.youtube.com/vi/Q3tLKV-6J3c/0.jpg" alt="Screencast" width="480" border="10" /></a>
+
+
+# Basic architecture: connect Camunda DMN via Zeebe job workers
 
 From Zeebes perspective Camunda DMN is something external which is connected via a Zeebe [Job Worker](https://docs.zeebe.io/basics/job-workers.html). 
 
