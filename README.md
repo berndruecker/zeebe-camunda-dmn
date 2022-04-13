@@ -1,3 +1,5 @@
+# DEPRECATED: This repo is deprecated, as DMN has landed as out-of-the-box feature in Camunda 8
+
 # How-to use Camunda DMN decision tables in Zeebe
 
 ![](./overview.png)
